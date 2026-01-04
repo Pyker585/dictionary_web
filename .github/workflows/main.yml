@@ -2,7 +2,7 @@ name: FTP Deploy Vue Site
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
 
 jobs:
   build-and-deploy:
