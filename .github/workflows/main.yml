@@ -26,10 +26,8 @@ jobs:
       - name: Sync Files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: dictionary-web.infinityfreeapp.com
-          username: if0_40820491
-          password: Destiny44504
-          # The local folder to upload (Vue's build output)
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          # The remote directory on your server
-          server-dir: ./public_html/
+          server-dir: ./htdocs/  # <--- InfinityFree usually uses htdocs
