@@ -1,0 +1,35 @@
+name: FTP Deploy Vue Site
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Sync Files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: dictionary-web.infinityfreeapp.com
+          username: if0_40820491
+          password: Destiny44504
+          # The local folder to upload (Vue's build output)
+          local-dir: ./dist/
+          # The remote directory on your server
+          server-dir: ./public_html/
